@@ -124,7 +124,7 @@ class TestCarModelBase(unittest.TestCase):
     self.safety.init_tests()
 
   def test_car_params(self):
-    if self.CP.dashcamOnly:
+    if self.CP.dashcamOnly and self.CP.carName != "ford":
       self.skipTest("no need to check carParams for dashcamOnly")
 
     # make sure car params are within a valid range
@@ -174,7 +174,7 @@ class TestCarModelBase(unittest.TestCase):
     self.assertEqual(error_cnt, 0)
 
   def test_panda_safety_rx_valid(self):
-    if self.CP.dashcamOnly:
+    if self.CP.dashcamOnly and self.CP.carName != "ford":
       self.skipTest("no need to check panda safety for dashcamOnly")
 
     start_ts = self.can_msgs[0].logMonoTime
@@ -205,7 +205,7 @@ class TestCarModelBase(unittest.TestCase):
     """
       Assert that panda safety matches openpilot's carState
     """
-    if self.CP.dashcamOnly:
+    if self.CP.dashcamOnly and self.CP.carName != "ford":
       self.skipTest("no need to check panda safety for dashcamOnly")
 
     CC = car.CarControl.new_message()
